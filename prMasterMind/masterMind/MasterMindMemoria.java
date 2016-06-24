@@ -7,29 +7,34 @@ public class MasterMindMemoria extends MasterMind {
 	private static final int TAMARRAYMOV = 10;
 
 	public MasterMindMemoria() {
-		// COMPLETAR
+		super(TAMANO_POR_DEFECTO);
 	}
 	
-	public MasterMindMemoria(int tam) throws MasterMindException {
-		// COMPLETAR
+	public MasterMindMemoria(int tam){
+		super(tam);
+        movimientos = new Movimiento[TAMARRAYMOV];
+        primeraPosicionLibre = 0;
 	}
 
+    @Override
 	public Movimiento intento(String cifraStr) {
-		// COMPLETAR
-		
-		// Obtenemos el movimiento y
-		// buscamos si ya hemos hecho este movimiento.
-	
-		// Si no se ha hecho se añade
-		// Quizás haya que hacer hueco en el array
-
-		
-		return null;
+        Movimiento mov = super.intento((cifraStr));
+        int i = 0;
+        while((i < primeraPosicionLibre)&&(!mov.equals(movimientos[i]))){
+            i++;
+        }
+		if(i<primeraPosicionLibre){
+            throw  new MasterMindException(("Movimiento repetido" + cifraStr));
+        }
+        if(primeraPosicionLibre==movimientos.length){
+            movimientos = Arrays.copyOf(movimientos, movimientos.length*2);
+        }
+        movimientos[primeraPosicionLibre] = mov;
+        primeraPosicionLibre++;
+		return mov;
 	}
 
 	public Movimiento[] movimientos() {
-		// COMPLETAR
-		// Se debe devolver un array con los movimientos
-		return null;
+		return Arrays.copyOf(movimientos,primeraPosicionLibre);
 	}
 }
