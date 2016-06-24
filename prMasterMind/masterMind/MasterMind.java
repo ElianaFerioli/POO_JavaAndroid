@@ -13,7 +13,7 @@ public class MasterMind {
 		generaCombinacionSecreta(TAMANO_POR_DEFECTO);
 	}
 	public MasterMind(int tam) {
-        if((tam < 1 )&&(tam > 10)) {
+        if((tam < 1 )||(tam > 10)) {
             throw new MasterMindException(("Número secreto erróneo"));
         } else {
 			generaCombinacionSecreta(tam);
