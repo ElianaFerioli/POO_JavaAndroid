@@ -31,7 +31,7 @@ public class Movimiento {
     public boolean equals(Object o){
         boolean resultado = o instanceof Movimiento;
         Movimiento m = resultado ? (Movimiento)o : null;
-        return resultado&&cifras==m.cifras;
+        return resultado&&cifras.equals(m.cifras);
     }
     public int hashCode(){
         return cifras.hashCode();
